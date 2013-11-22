@@ -44,21 +44,23 @@
     }
     showMenu = function() {
       if ($nav.hasClass('lg-screen') === true) {
-        if (settings.transitionOpacity === true) {
-          return $(this).find('>ul').addClass('show').stop(true, true).animate({
-            height: ["toggle", "swing"],
-            opacity: "toggle"
-          }, settings.animationSpeed);
-        } else {
-          return $(this).find('>ul').addClass('show').stop(true, true).animate({
-            height: ["toggle", "swing"]
-          }, settings.animationSpeed);
-        }
+        $(this).addClass('show');
+      }
+      if (settings.transitionOpacity === true) {
+        return $(this).find('>ul').addClass('show').stop(true, true).animate({
+          height: ["toggle", "swing"],
+          opacity: "toggle"
+        }, settings.animationSpeed);
+      } else {
+        return $(this).find('>ul').addClass('show').stop(true, true).animate({
+          height: ["toggle", "swing"]
+        }, settings.animationSpeed);
       }
     };
     resetMenu = function() {
       if ($nav.hasClass('lg-screen') === true && $(this).find('>ul').hasClass('show') === true) {
         if (settings.transitionOpacity === true) {
+          $(this).removeClass('show');
           return $(this).find('>ul').removeClass('show').stop(true, true).animate({
             height: ["toggle", "swing"],
             opacity: "toggle"

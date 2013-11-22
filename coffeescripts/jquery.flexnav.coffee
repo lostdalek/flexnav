@@ -43,6 +43,7 @@ $.fn.flexNav = (options) ->
   # Functions for hover support
   showMenu = ->
     if $nav.hasClass('lg-screen') is true
+        $(@).addClass('show')
       if settings.transitionOpacity is true
         $(@).find('>ul')
           .addClass('show')
@@ -63,6 +64,7 @@ $.fn.flexNav = (options) ->
   resetMenu = ->
     if $nav.hasClass('lg-screen') is true and $(@).find('>ul').hasClass('show') is true
       if settings.transitionOpacity is true
+        $(@).removeClass('show')
         $(@).find('>ul')
           .removeClass('show')
           .stop(true, true)
@@ -117,6 +119,18 @@ $.fn.flexNav = (options) ->
 
   # Toggle touch for nav menu
   toggle_selector = settings['buttonSelector'] + ', ' + settings['buttonSelector'] + ' .touch-button'
+
+
+  # # Set navigation element for this instantiation
+  # touch_selector = settings['buttonSelector']
+  # $(touch_selector).data('navEl', $nav)
+  # # Add in touch buttons
+  # touchContent = '<span class="touch-button"><i class="navicon">&#9660;</i></span>'
+  # $nav.find('.item-with-ul').append(touchContent)
+  # $(touch_selector).append(touchContent)
+  # # Toggle touch for nav menu
+  # toggle_selector = touch_selector + ', ' + touch_selector + ' .touch-button'
+
   $(toggle_selector).on('click', (e) ->
     $(toggle_selector).toggleClass('active')
     e.preventDefault()
