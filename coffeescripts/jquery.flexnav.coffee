@@ -65,7 +65,7 @@ $.fn.flexNav = (options) ->
   resetMenu = ->
     if $nav.hasClass('lg-screen') is true and $(@).find('>ul').hasClass('flexnav-show') is true and settings.hover is true
       if settings.transitionOpacity is true
-        $(@).removeClass('show')
+        $(@).removeClass('flexnav-sshow')
         $(@).find('>ul')
           .removeClass('flexnav-show')
           .stop(true, true)

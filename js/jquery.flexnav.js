@@ -61,7 +61,7 @@
     resetMenu = function() {
       if ($nav.hasClass('lg-screen') === true && $(this).find('>ul').hasClass('flexnav-show') === true && settings.hover === true) {
         if (settings.transitionOpacity === true) {
-          $(this).removeClass('show');
+          $(this).removeClass('flexnav-sshow');
           return $(this).find('>ul').removeClass('flexnav-show').stop(true, true).animate({
             height: ["toggle", "swing"],
             opacity: "toggle"
