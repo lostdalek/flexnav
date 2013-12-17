@@ -10,7 +10,14 @@
 
 A mobile-first example of using media queries and jQuery to make a decent site menu with drop downs. Special attention is paid to touch screens using touch events and tap targets. This is something I use to test different navigation techniques and may change as I iterate over different solutions to the problem. Basically I want a simple model to build upon when working on sites from scratch.
 
-**Note:** If you find a bug, please [file an issue](https://github.com/indyplanets/flexnav/issues) and note device and browser versions
+**Note:** If you find a bug, please [file an issue](https://github.com/indyplanets/flexnav/issues) and note device and browser versions. Use [the Demo](http://jasonweaver.name/lab/flexiblenavigation/) as a point of reference for bugs. I can't offer my time to debug your specific code.
+
+### Resources
+* [Theming a Multi-level Responsive Menu in Drupal 7](http://highrockmedia.com/blog/theming-multi-level-responsive-menu-drupal-7)
+* [Gratis Drupal 7 Responsive Theme](http://gratis.themehuis.com/)
+* [Dreamweaver support forum](http://forums.adobe.com/message/5811244)
+* [Using FlexNav with WordPress](http://wordpress.stackexchange.com/questions/101021/using-flexnav-with-wordpress)
+* [FlexNav with WordPress Genesis 2.0 demo](http://bradpotter.com/themes/genesis20flex/)
 
 ### Features
 * Multiple nested sub menus
@@ -27,6 +34,9 @@ A mobile-first example of using media queries and jQuery to make a decent site m
 * Latest FireFox
 * Android 2.2 to Latest
 * Mobile Safari
+
+### License
+FlexNav is unlicensed. Do whatever you want with it. :) [Set Your Code Free](http://unlicense.org/)
 
 * * *
 ### Usage
@@ -66,7 +76,8 @@ $(".flexnav").flexNav({
   'buttonSelector':     '.menu-button', // default menu button class name
   'hoverIntent':        false,          // Change to true for use with hoverIntent plugin
   'hoverIntentTimeout': 150,            // hoverIntent default timeout
-  'calcItemWidths':     false           // dynamically calcs top level nav item widths  	  
+  'calcItemWidths':     false,          // dynamically calcs top level nav item widths
+  'hover':              true            // would you like hover support?  	  
 });
 ```	
 
