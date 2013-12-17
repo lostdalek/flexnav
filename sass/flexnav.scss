@@ -5,7 +5,7 @@ $top_level: #a6a6a2;
 $second_level: #b2b2af;
 $third_level: #bfbfbc;
 $fourth_level: #cbcbc9;
-
+$minWidth: 971px;
 .flexnav {
 	-webkit-transition: none;
   -moz-transition: none;
@@ -135,7 +135,7 @@ $fourth_level: #cbcbc9;
 	}
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: $minWidth) {
 	body.one-page {
 		padding-top: 70px;
 	}

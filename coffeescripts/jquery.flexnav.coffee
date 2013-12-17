@@ -44,7 +44,7 @@ $.fn.flexNav = (options) ->
   # Functions for hover support
   showMenu = ->
     if $nav.hasClass('lg-screen') is true and settings.hover is true
-      $(@).addClass('show')
+      $(@).addClass('flexnav-show')
       if settings.transitionOpacity is true
         $(@).find('>ul')
           .addClass('flexnav-show')
@@ -101,17 +101,17 @@ $.fn.flexNav = (options) ->
         $top_nav_items.css('width',nav_percent)
       # Make sure navigation is closed when going back to large screens
       $nav.removeClass('flexnav-show').find('.item-with-ul').on()
-      $('.item-with-ul').find('ul').removeClass('flexnav-show')
+      $nav.find('.item-with-ul').find('ul').removeClass('flexnav-show')
       resetMenu()
       if settings.hoverIntent is true
         # Requires hoverIntent jquery plugin http://cherne.net/brian/resources/jquery.hoverIntent.html
-        $('.item-with-ul').hoverIntent(
+        $nav.find('.item-with-ul').hoverIntent(
           over: showMenu,
           out: resetMenu,
           timeout: settings.hoverIntentTimeout
         )
       else if settings.hoverIntent is false
-        $('.item-with-ul').on('mouseenter', showMenu).on('mouseleave', resetMenu)
+        $nav.find('.item-with-ul').on('mouseenter', showMenu).on('mouseleave', resetMenu)
 	
   # Set navigation element for this instantiation
   $(settings['buttonSelector']).data('navEl', $nav)
