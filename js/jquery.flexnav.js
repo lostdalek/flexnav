@@ -44,16 +44,19 @@
       breakpoint = $nav.data('breakpoint');
     }
     showMenu = function() {
+      var $sub;
+      $sub = $(this).find('>ul');
+      console.log('targeted sub', $sub);
       if ($nav.hasClass('lg-screen') === true && settings.hover === true) {
-        $(this).addClass('flexnav-show');
+        $(this).addClass('flexnav-active');
         if (settings.transitionOpacity === true) {
           return $(this).find('>ul').addClass('flexnav-show').stop(true, true).animate({
-            height: ["toggle", "swing"],
-            opacity: "toggle"
+            height: ["show", "swing"],
+            opacity: "show"
           }, settings.animationSpeed);
         } else {
           return $(this).find('>ul').addClass('flexnav-show').stop(true, true).animate({
-            height: ["toggle", "swing"]
+            height: ["show", "swing"]
           }, settings.animationSpeed);
         }
       }
@@ -61,14 +64,14 @@
     resetMenu = function() {
       if ($nav.hasClass('lg-screen') === true && $(this).find('>ul').hasClass('flexnav-show') === true && settings.hover === true) {
         if (settings.transitionOpacity === true) {
-          $(this).removeClass('flexnav-sshow');
+          $(this).removeClass('flexnav-active');
           return $(this).find('>ul').removeClass('flexnav-show').stop(true, true).animate({
-            height: ["toggle", "swing"],
-            opacity: "toggle"
+            height: ["hide", "swing"],
+            opacity: "hide"
           }, settings.animationSpeed);
         } else {
           return $(this).find('>ul').removeClass('flexnav-show').stop(true, true).animate({
-            height: ["toggle", "swing"]
+            height: ["hide", "swing"]
           }, settings.animationSpeed);
         }
       }

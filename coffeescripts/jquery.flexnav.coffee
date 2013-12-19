@@ -43,15 +43,20 @@ $.fn.flexNav = (options) ->
 	
   # Functions for hover support
   showMenu = ->
+
+    $sub = $(@).find('>ul')
+    console.log('targeted sub', $sub)
+
+
     if $nav.hasClass('lg-screen') is true and settings.hover is true
-      $(@).addClass('flexnav-show')
+      $(@).addClass('flexnav-active')
       if settings.transitionOpacity is true
         $(@).find('>ul')
           .addClass('flexnav-show')
           .stop(true, true)
           .animate(
-            height: [ "toggle", "swing" ],
-            opacity: "toggle",
+            height: [ "show", "swing" ],
+            opacity: "show",
             settings.animationSpeed
           )
       else
@@ -59,19 +64,20 @@ $.fn.flexNav = (options) ->
          .addClass('flexnav-show')
          .stop(true, true)
          .animate(
-           height: [ "toggle", "swing" ],
+           height: [ "show", "swing" ],
            settings.animationSpeed
          )
   resetMenu = ->
     if $nav.hasClass('lg-screen') is true and $(@).find('>ul').hasClass('flexnav-show') is true and settings.hover is true
       if settings.transitionOpacity is true
-        $(@).removeClass('flexnav-sshow')
+
+        $(@).removeClass('flexnav-active')
         $(@).find('>ul')
           .removeClass('flexnav-show')
           .stop(true, true)
           .animate(
-            height: [ "toggle", "swing" ],
-            opacity: "toggle",
+            height: [ "hide", "swing" ],
+            opacity: "hide",
             settings.animationSpeed
           )
       else
@@ -79,7 +85,7 @@ $.fn.flexNav = (options) ->
           .removeClass('flexnav-show')
           .stop(true, true)
           .animate(
-            height: [ "toggle", "swing" ],
+            height: [ "hide", "swing" ],
             settings.animationSpeed
           )
 
