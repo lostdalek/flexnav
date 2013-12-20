@@ -21,6 +21,7 @@ $.fn.flexNav = (options) ->
     'hover': true
     options
 
+  infBreakpoint = null
   $nav = $(@)
 
   # Set some classes in the markup
@@ -45,8 +46,6 @@ $.fn.flexNav = (options) ->
   showMenu = ->
 
     $sub = $(@).find('>ul')
-    console.log('targeted sub', $sub)
-
 
     if $nav.hasClass('lg-screen') is true and settings.hover is true
       $(@).addClass('flexnav-active')
@@ -68,6 +67,7 @@ $.fn.flexNav = (options) ->
            settings.animationSpeed
          )
   resetMenu = ->
+
     if $nav.hasClass('lg-screen') is true and $(@).find('>ul').hasClass('flexnav-show') is true and settings.hover is true
       if settings.transitionOpacity is true
 
@@ -91,7 +91,13 @@ $.fn.flexNav = (options) ->
 
   # Changing classes depending on viewport width and adding in hover support
   resizer = ->
+
     if $(window).width() <= breakpoint
+      if infBreakpoint != null
+        if infBreakpoint == true
+          return
+      infBreakpoint = true
+
       $nav.removeClass("lg-screen").addClass("sm-screen")
       if settings.calcItemWidths is true
         $top_nav_items.css('width','100%')
@@ -102,12 +108,18 @@ $.fn.flexNav = (options) ->
         $nav.removeClass('flexnav-show')
       )
     else if $(window).width() > breakpoint
+      if infBreakpoint != null
+        if infBreakpoint == false
+          return
+      infBreakpoint = false
+
       $nav.removeClass("sm-screen").addClass("lg-screen")
       if settings.calcItemWidths is true
         $top_nav_items.css('width',nav_percent)
       # Make sure navigation is closed when going back to large screens
       $nav.removeClass('flexnav-show').find('.item-with-ul').on()
       $nav.find('.item-with-ul').find('ul').removeClass('flexnav-show')
+
       resetMenu()
       if settings.hoverIntent is true
         # Requires hoverIntent jquery plugin http://cherne.net/brian/resources/jquery.hoverIntent.html
@@ -118,7 +130,8 @@ $.fn.flexNav = (options) ->
         )
       else if settings.hoverIntent is false
         $nav.find('.item-with-ul').on('mouseenter', showMenu).on('mouseleave', resetMenu)
-	
+
+
   # Set navigation element for this instantiation
   $(settings['buttonSelector']).data('navEl', $nav)
 

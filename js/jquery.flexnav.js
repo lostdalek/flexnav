@@ -14,7 +14,7 @@
   $ = jQuery;
 
   $.fn.flexNav = function(options) {
-    var $nav, $top_nav_items, breakpoint, count, nav_percent, nav_width, resetMenu, resizer, settings, showMenu, toggle_selector, touch_selector;
+    var $nav, $top_nav_items, breakpoint, count, infBreakpoint, nav_percent, nav_width, resetMenu, resizer, settings, showMenu, toggle_selector, touch_selector;
     settings = $.extend({
       'animationSpeed': 250,
       'transitionOpacity': true,
@@ -24,6 +24,7 @@
       'calcItemWidths': false,
       'hover': true
     }, options);
+    infBreakpoint = null;
     $nav = $(this);
     $nav.addClass('with-js');
     if (settings.transitionOpacity === true) {
@@ -46,7 +47,6 @@
     showMenu = function() {
       var $sub;
       $sub = $(this).find('>ul');
-      console.log('targeted sub', $sub);
       if ($nav.hasClass('lg-screen') === true && settings.hover === true) {
         $(this).addClass('flexnav-active');
         if (settings.transitionOpacity === true) {
@@ -79,6 +79,12 @@
     resizer = function() {
       var selector;
       if ($(window).width() <= breakpoint) {
+        if (infBreakpoint !== null) {
+          if (infBreakpoint === true) {
+            return;
+          }
+        }
+        infBreakpoint = true;
         $nav.removeClass("lg-screen").addClass("sm-screen");
         if (settings.calcItemWidths === true) {
           $top_nav_items.css('width', '100%');
@@ -89,6 +95,12 @@
           return $nav.removeClass('flexnav-show');
         });
       } else if ($(window).width() > breakpoint) {
+        if (infBreakpoint !== null) {
+          if (infBreakpoint === false) {
+            return;
+          }
+        }
+        infBreakpoint = false;
         $nav.removeClass("sm-screen").addClass("lg-screen");
         if (settings.calcItemWidths === true) {
           $top_nav_items.css('width', nav_percent);
